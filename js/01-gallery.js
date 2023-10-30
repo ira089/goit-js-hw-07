@@ -23,11 +23,22 @@ function onClick(evt) {
   const imgOriginal = evt.target.dataset.source;
   //   console.log(imgOriginal);
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img  src="${imgOriginal}"/>  
-`);
+`,
+    {
+      onShow: (instance) => {
+        galleryUl.addEventListener("keydown", offClick);
+      },
+
+      onClose: (instance) => {
+        galleryUl.removeEventListener("keydown", offClick);
+      },
+    }
+  );
   instance.show();
-  galleryUl.addEventListener("keydown", offClick);
+  // galleryUl.addEventListener("keydown", offClick);
   function offClick(evt) {
     if (evt.code === "Escape") {
       instance.close();
