@@ -15,7 +15,7 @@ galleryUl.innerHTML = markupImg;
 
 galleryUl.addEventListener("click", onClick);
 function onClick(evt) {
-  //   console.log(evt.target);
+  console.log(evt.target);
   evt.preventDefault();
   if (!evt.target.classList.contains("gallery__image")) {
     return;
